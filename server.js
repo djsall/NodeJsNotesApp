@@ -33,7 +33,7 @@ app.get('/clearlist', (req, res) => {
 });
 
 app.post('/postItem', (req, res) => {
-	con.query('insert into shopping (ip, message) values ("' + req.ip + '", "' + con.escape(req.body.message) + '")', err => {
+	con.query('insert into shopping (ip, message) values ("' + req.ip + '", "' + con.escape(req.body.message).replace("'", "") + '")', err => {
 		if (err) throw err;
 	});
 	res.sendStatus(200);
